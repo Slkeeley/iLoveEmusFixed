@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
             if(GetComponentInChildren<Gun>().bullets<1)
             {
                 gun.SetActive(false);
-                GameObject.Instantiate(gunProjectile, new Vector3(transform.position.x+0.5f, transform.position.y+0.5f, transform.position.z+2f), Quaternion.identity);
+                GameObject.Instantiate(gunProjectile, new Vector3(transform.position.x+0.5f,transform.position.y+0.5f, transform.position.z+2f), Quaternion.identity);
             }
         }
         updateUI();
