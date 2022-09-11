@@ -104,7 +104,7 @@ public class BaseEmu : MonoBehaviour
     {
         Debug.Log("stab");
         RaycastHit hitPlayer;
-        if(Physics.Raycast(transform.position, transform.forward, out hitPlayer, attackRange+2))
+        if(Physics.Raycast(transform.position, transform.forward, out hitPlayer, attackRange+2.5f))
         {
             Player enemy = hitPlayer.transform.GetComponent<Player>();
             if (enemy != null)
