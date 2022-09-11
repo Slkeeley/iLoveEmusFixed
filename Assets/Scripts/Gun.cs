@@ -47,12 +47,22 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
       if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))//check if the raycast from the camera hit an enemy
         {
-            BaseEmu enemy = hit.transform.GetComponentInParent<BaseEmu>();
-            if(enemy!=null)
+            Debug.Log(hit.transform.name);
+            BaseEmu emu = hit.transform.GetComponentInParent<BaseEmu>();
+         
+//            BaseEmu emu = hit.transform.GetComponentInParent<BaseEmu>();
+            if(emu !=null)
             {
                 GetComponentInParent<Player>().hitmarker.SetActive(true);
                 StartCoroutine(hitmarker());
-                enemy.takeDamage(damage); 
+                emu.takeDamage(damage); 
+            }
+            if(hit.transform.name=="JeepMu")
+            {
+                Debug.Log("Jeep Has been hit");
+                GetComponentInParent<Player>().hitmarker.SetActive(true);
+                StartCoroutine(hitmarker());
+                hit.transform.GetComponent<JeepMu>().takeDamage(damage);
             }
         }
     }

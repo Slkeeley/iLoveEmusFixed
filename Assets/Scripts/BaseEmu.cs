@@ -43,7 +43,7 @@ public class BaseEmu : MonoBehaviour
         enemyInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!enemyInSight && !enemyInAttackRange) patrol();
-        if (!enemyInSight && enemyInAttackRange) Debug.Log("sees player");  aggro(); 
+        if (enemyInSight && !enemyInAttackRange)  aggro(); 
         if (enemyInSight && enemyInAttackRange) attack();
 
         healthBar.fillAmount = Mathf.Clamp(health / 9, 0, 1f);
@@ -128,6 +128,7 @@ public class BaseEmu : MonoBehaviour
     void Die()
     {
         //blood effect
+        Player.emusKilled++; 
         Destroy(this.gameObject);
     }
 
