@@ -13,10 +13,13 @@ public class CapturePoint : MonoBehaviour
     public TMP_Text captureProgress;
     public Material enemyControl;
     public Material allyControl;
+    bool m_Play;
+    AudioSource m_Capture;
+    bool m_ToggleChange;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshRenderer>().material = enemyControl;   
+        GetComponent<MeshRenderer>().material = enemyControl;
     }
 
     // Update is called once per frame
@@ -25,6 +28,11 @@ public class CapturePoint : MonoBehaviour
         if(progress==100)
         {
             captureNeeded = false;
+            m_Play = true;
+            m_Capture = GetComponent<AudioSource>();
+            m_Capture.Play();
+            m_ToggleChange = false;
+            //print("played audio");
         }
 
         if(captureNeeded)
