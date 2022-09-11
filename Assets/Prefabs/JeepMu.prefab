@@ -412,7 +412,7 @@ MonoBehaviour:
   health: 12
   healthBar: {fileID: 976975665261500245}
   emuDamage: 5
-  spawnEmus: {fileID: 1754532469511607603, guid: e8753b33684e5c54aa03a1407b7a4a31, type: 3}
+  spawnEmus: {fileID: 7262457639361146065, guid: e8753b33684e5c54aa03a1407b7a4a31, type: 3}
   speed: 20
 --- !u!1 &7643216887539385470
 GameObject:
