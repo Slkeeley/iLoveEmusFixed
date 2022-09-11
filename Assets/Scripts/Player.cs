@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     public float frontBack;
     public float leftRight;
     public bool isSprinting = false;
-    public int pointsCaptured; 
+    public int pointsCaptured;
+    public static int emusKilled;
     [Header("UI Elements")]
     public TMP_Text bulletText;
    public TMP_Text captureProgressText;
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour
     }
     private void updateUI()
     {
-        Debug.Log("attempting to update UI");
         bulletText.text = gun.GetComponent<Gun>().bullets.ToString();
         captureProgressText.text = pointsCaptured.ToString() + "/3";
         healthBar.fillAmount = Mathf.Clamp(healthPool /100, 0, 1f);

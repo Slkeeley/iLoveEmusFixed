@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject emu;
     public float spawnDelay;
-    public bool canSpawn = true;
+    public bool canSpawn = false;
     // Start is called before the first frame update
     void Start()
     {
