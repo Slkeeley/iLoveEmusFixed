@@ -32,9 +32,9 @@ public class Player : MonoBehaviour
     //Player's rigidbody
     public GameObject gun;
     public GameObject gunProjectile;
-    //bool m_Play;
-    //AudioSource m_Finish;
-    //bool m_ToggleChange;
+    bool m_Play;
+    AudioSource m_Pain;
+    bool m_ToggleChange;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +52,6 @@ public class Player : MonoBehaviour
         if(pointsCaptured>=3)
         {
             finish();
-            //m_Play = true;
-            //m_Finish = GetComponent<AudioSource>();
-            //m_Finish.Play();
-            //m_ToggleChange = false;
         }
             
         if (healthPool <= 0)
@@ -120,6 +116,10 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int emuDamage)
     {
+        m_Play = true;
+        m_Pain = GetComponent<AudioSource>();
+        m_Pain.Play();
+        m_ToggleChange = false;
         healthPool = healthPool - emuDamage;
         damageEffect.SetActive(true);
         StartCoroutine(damageScreen());
