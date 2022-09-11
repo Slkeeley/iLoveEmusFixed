@@ -57,12 +57,19 @@ public class Gun : MonoBehaviour
                 StartCoroutine(hitmarker());
                 emu.takeDamage(damage); 
             }
-            if(hit.transform.name=="JeepMu")
+            if(hit.transform.tag=="JeepMu")
             {
                 Debug.Log("Jeep Has been hit");
                 GetComponentInParent<Player>().hitmarker.SetActive(true);
                 StartCoroutine(hitmarker());
                 hit.transform.GetComponent<JeepMu>().takeDamage(damage);
+            }
+            if (hit.transform.tag == "JetPackEmu")
+            {
+                Debug.Log("Jeep Has been hit");
+                GetComponentInParent<Player>().hitmarker.SetActive(true);
+                StartCoroutine(hitmarker());
+                hit.transform.GetComponent<JetPackEmu>().takeDamage(damage);
             }
         }
     }

@@ -1,71 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using TMPro;
-using UnityEngine.UI;
+using UnityEngine.UI; 
+using UnityEngine.AI; 
 
-public class BaseEmu : MonoBehaviour
+public class JetPackEmu : MonoBehaviour
 {
 
     [Header("AI Variables")]
+    //allows emu to move
     public NavMeshAgent agent; //allows emu to move
     public Transform player;//What enemy is the monster targetting
-    public LayerMask whatIsGround;//What is legal for the enemy to walk on
+    public LayerMask whatIsAir;//What is legal for the enemy to walk on
     public LayerMask whatIsPlayer;
     public Vector3 walkPoint;//where will the enemy go to 
     bool walkPointSet;
     public float walkPointRange;
     public float sightRange, attackRange;
     public bool enemyInSight, enemyInAttackRange;//tell the monster to chase after a seen enemy and attack one if in range  
-    bool dead = false; 
-
     [Header("Object Variables")]
-    bool alreadyAttacked=false;
+    bool alreadyAttacked = false;
     public float attackDelay;
-    public float health = 9;
-    public GameObject head;
-    public GameObject emuCanvas;
-  //  public GameObject bloodEffect;
+    public float health = 6;
     public Image healthBar;
-    public int emuDamage=5;
-    public Material emuSkin; 
-    public Material damaged; 
+    public GameObject Egg;
+    public float speed = 10f; 
+
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-      //  bloodEffect.SetActive(false);
-        head.SetActive(true);
-        emuCanvas.SetActive(true);
-        GetComponent<MeshRenderer>().material = emuSkin;
     }
 
     private void Update()
     {
-        if(health<=0)
+        if (health <= 0)
         {
-            dead = true; 
-            StartCoroutine(emuDeath());
+            Die(); 
         }
-
-        if (!dead)
-        {
+        Debug.Log(walkPointSet);
             enemyInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             enemyInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
             if (!enemyInSight && !enemyInAttackRange) patrol();
             if (enemyInSight && !enemyInAttackRange) aggro();
             if (enemyInSight && enemyInAttackRange) attack();
-        }
-        healthBar.fillAmount = Mathf.Clamp(health / 9, 0, 1f);
+    
+        healthBar.fillAmount = Mathf.Clamp(health / 6, 0, 1f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "gunProjectile")
         {
+            Debug.Log("Collided With Gun");
             health = health - 6;
         }
     }
@@ -78,9 +66,9 @@ public class BaseEmu : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if(distanceToWalkPoint.magnitude <1.0f)
+        if (distanceToWalkPoint.magnitude < 1.0f)
         {
-            walkPointSet = false; 
+            walkPointSet = false;
         }
     }
 
@@ -90,9 +78,10 @@ public class BaseEmu : MonoBehaviour
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) walkPointSet=true; 
+        walkPointSet = true;
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsAir)) walkPointSet = true;
     }
+
 
     void aggro()
     {
@@ -105,61 +94,36 @@ public class BaseEmu : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
-        if(!alreadyAttacked)
+        if (!alreadyAttacked)
         {
-            stab();
+            shootEgg();
             alreadyAttacked = true;
             StartCoroutine(attackAgain());
         }
     }
 
-   void stab()
+    void shootEgg()
     {
-        Debug.Log("stab");
-        head.GetComponent<EmuHead>().animator.Play("HeadStab");
-        RaycastHit hitPlayer;
-        if(Physics.Raycast(transform.position, transform.forward, out hitPlayer, attackRange+3f))
-        {
-            Player enemy = hitPlayer.transform.GetComponent<Player>();
-            if (enemy != null)
-            {
-                enemy.takeDamage(emuDamage);
-            }
-        }
+        Debug.Log("attackign");
+        //instantiate projectile
     }
 
     IEnumerator attackAgain()
     {
         yield return new WaitForSeconds(attackDelay);
-        head.GetComponent<EmuHead>().animator.StopPlayback();//stop the emu head attack animation
-        alreadyAttacked = false; 
+      
+        alreadyAttacked = false;
     }
 
     public void takeDamage(int damage)
     {
         health = health - damage;
-        GetComponent<MeshRenderer>().material = damaged;
-        StartCoroutine(damageEffect());
     }
 
-    IEnumerator damageEffect()
+   
+    void Die()
     {
-        GetComponent<MeshRenderer>().material = damaged;
-        yield return new WaitForSeconds(0.3f);
-        GetComponent<MeshRenderer>().material = emuSkin;
-    }
-
-    IEnumerator emuDeath()
-    {
-        agent.SetDestination(transform.position);
-        head.SetActive(false);
-        emuCanvas.SetActive(false);
-   //     bloodEffect.SetActive(true);
-        Vector3 newRotation = new Vector3(0, 90, -90f);
-        transform.eulerAngles = newRotation;
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-        yield return new WaitForSeconds(3.0f);
-        Player.emusKilled++; 
+        Player.emusKilled++;
         Destroy(this.gameObject);
     }
 
