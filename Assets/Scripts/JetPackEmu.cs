@@ -104,8 +104,7 @@ public class JetPackEmu : MonoBehaviour
 
     void shootEgg()
     {
-        Debug.Log("attackign");
-        //instantiate projectile
+        GameObject.Instantiate(Egg, new Vector3(transform.position.x, transform.position.y - 3f, transform.position.z), Quaternion.identity);
     }
 
     IEnumerator attackAgain()

@@ -10,6 +10,7 @@ TagManager:
   - emu
   - JetPackEmu
   - JeepMu
+  - Egg
   layers:
   - Default
   - TransparentFX

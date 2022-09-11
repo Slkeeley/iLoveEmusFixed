@@ -5005,7 +5005,7 @@ GameObject:
   - component: {fileID: 5985680739608737720}
   m_Layer: 0
   m_Name: JetpackEmu
-  m_TagString: Untagged
+  m_TagString: JetPackEmu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5129,7 +5129,7 @@ MonoBehaviour:
   attackDelay: 2
   health: 6
   healthBar: {fileID: 1775001424349723634}
-  Egg: {fileID: 0}
+  Egg: {fileID: 6283801446293962674, guid: b78c8e9214ff72b4eb1386e1dd8cb79d, type: 3}
   speed: 10
 --- !u!65 &5985680739608737720
 BoxCollider:
