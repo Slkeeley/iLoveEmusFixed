@@ -31,7 +31,10 @@ public class Player : MonoBehaviour
     [Header("Components")]
     //Player's rigidbody
     public GameObject gun;
-    public GameObject gunProjectile; 
+    public GameObject gunProjectile;
+    //bool m_Play;
+    //AudioSource m_Finish;
+    //bool m_ToggleChange;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,10 @@ public class Player : MonoBehaviour
         if(pointsCaptured>=3)
         {
             finish();
+            //m_Play = true;
+            //m_Finish = GetComponent<AudioSource>();
+            //m_Finish.Play();
+            //m_ToggleChange = false;
         }
             
         if (healthPool <= 0)
