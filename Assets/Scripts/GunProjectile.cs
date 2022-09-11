@@ -16,6 +16,9 @@ public class GunProjectile : MonoBehaviour
     Rigidbody rb;
     Transform cameraPos;
     Transform nextEmu;
+    bool m_Play;
+    AudioSource m_Throw;
+    bool m_ToggleChange;
 
     private void Start()
     {
@@ -24,6 +27,10 @@ public class GunProjectile : MonoBehaviour
         player = GameObject.Find("Player").transform;//find both the player and camera objects in the scene
         cameraPos = GameObject.Find("fpsCam").transform;
         StartCoroutine(beginReturn());
+        m_Play = true;
+        m_Throw = GetComponent<AudioSource>();
+        m_Throw.Play();
+        m_ToggleChange = false;
     }
 
     private void Update()
