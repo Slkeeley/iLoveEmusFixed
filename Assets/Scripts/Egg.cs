@@ -12,6 +12,7 @@ public class Egg : MonoBehaviour
         Debug.Log("egg instantiated");
         player = GameObject.Find("Player").transform;
         playerPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        StartCoroutine(despawnEgg());
     }
 
     // Update is called once per frame
@@ -30,5 +31,11 @@ public class Egg : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator despawnEgg()
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(this.gameObject);
     }
 }
