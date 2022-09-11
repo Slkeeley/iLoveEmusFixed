@@ -17,7 +17,11 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canSpawn) spawnEmu();
+        if (canSpawn)
+        {
+            canSpawn = false; 
+            spawnEmu();
+        }
     }
 
     void spawnEmu()
@@ -28,7 +32,6 @@ public class Spawner : MonoBehaviour
 
     IEnumerator spawnCooldown()
     {
-        canSpawn = false;
         yield return new WaitForSeconds(spawnDelay);
         canSpawn = true;
     }
