@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public Image healthBar;
     public GameObject captureText;
     public GameObject hitmarker;
+    public GameObject damageEffect;
     //Components needed to do stuff
     [Header("Components")]
     //Player's rigidbody
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         updateUI();
         captureText.SetActive(false);
         hitmarker.SetActive(false);
+        damageEffect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
             if(GetComponentInChildren<Gun>().bullets<1)
             {
                 gun.SetActive(false);
-                GameObject.Instantiate(gunProjectile, new Vector3(transform.position.x+0.5f, transform.position.y+0.5f, transform.position.z+2f), Quaternion.identity);
+                GameObject.Instantiate(gunProjectile, new Vector3(transform.position.x+0.5f,transform.position.y+0.5f, transform.position.z+2f), Quaternion.identity);
             }
         }
         updateUI();
@@ -112,6 +114,8 @@ public class Player : MonoBehaviour
     public void takeDamage(int emuDamage)
     {
         healthPool = healthPool - emuDamage;
+        damageEffect.SetActive(true);
+        StartCoroutine(damageScreen());
     }
 
     public  void pointCaptured()
@@ -124,5 +128,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         captureText.SetActive(false);
+    }
+
+    IEnumerator damageScreen()
+    {
+        yield return new WaitForSeconds(0.15f);
+        damageEffect.SetActive(false);
     }
 }
