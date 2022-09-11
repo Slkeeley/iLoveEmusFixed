@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
     public Camera fpsCam;
     public Animator animator;
     public GameObject muzzleFlash;
+    bool m_Play;
+    AudioSource m_Gun;
+    bool m_ToggleChange;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +43,10 @@ public class Gun : MonoBehaviour
 
     void shoot()
     {
-        //sound
+        m_Play = true;
+        m_Gun = GetComponent<AudioSource>();
+        m_Gun.Play();
+        m_ToggleChange = false;
         animator.Play("GunRecoil");
         bullets--;
        muzzleFlash.SetActive(true);
