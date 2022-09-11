@@ -26,20 +26,18 @@ public class BaseEmu : MonoBehaviour
     public float health = 9;
     public GameObject head;
     public GameObject emuCanvas;
-  //  public GameObject bloodEffect;
+    public GameObject bloodEffect;
     public Image healthBar;
     public int emuDamage=5;
-    public Material emuSkin; 
-    public Material damaged; 
+
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-      //  bloodEffect.SetActive(false);
+        bloodEffect.SetActive(false);
         head.SetActive(true);
         emuCanvas.SetActive(true);
-        GetComponent<MeshRenderer>().material = emuSkin;
     }
 
     private void Update()
@@ -138,15 +136,6 @@ public class BaseEmu : MonoBehaviour
     public void takeDamage(int damage)
     {
         health = health - damage;
-        GetComponent<MeshRenderer>().material = damaged;
-        StartCoroutine(damageEffect());
-    }
-
-    IEnumerator damageEffect()
-    {
-        GetComponent<MeshRenderer>().material = damaged;
-        yield return new WaitForSeconds(0.3f);
-        GetComponent<MeshRenderer>().material = emuSkin;
     }
 
     IEnumerator emuDeath()
@@ -154,7 +143,7 @@ public class BaseEmu : MonoBehaviour
         agent.SetDestination(transform.position);
         head.SetActive(false);
         emuCanvas.SetActive(false);
-   //     bloodEffect.SetActive(true);
+        bloodEffect.SetActive(true);
         Vector3 newRotation = new Vector3(0, 90, -90f);
         transform.eulerAngles = newRotation;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);

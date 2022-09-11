@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5949767367969395800}
   - component: {fileID: 5949767367969395807}
   m_Layer: 0
-  m_Name: EmuSpawner 2
+  m_Name: JetPackSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
