@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        emusKilled = 0;
         playerHitbox = GetComponent<BoxCollider>();
         Cursor.lockState = CursorLockMode.Locked;
         updateUI();

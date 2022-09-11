@@ -7,8 +7,7 @@ public class MenuButtons : MonoBehaviour
 {
     public void startGame()
     {
-        Debug.Log("startingGame");
-        //start game
+        SceneManager.LoadScene("ChrisScene");
     }
 
     public void toCredits()
