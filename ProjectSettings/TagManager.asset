@@ -7,11 +7,14 @@ TagManager:
   - vegemu
   - gunProjectile
   - Jeep
+  - emu
+  - JetPackEmu
+  - JeepMu
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Air
   - Water
   - UI
   - Ground
