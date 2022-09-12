@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emu: {fileID: 6394152498880105383, guid: f48a3c58090c5c9418e9cd2f549f3981, type: 3}
-  spawnDelay: 15
+  spawnDelay: 20
   canSpawn: 1
