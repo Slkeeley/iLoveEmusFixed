@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
     }
     public void finish()
     {
-        SceneManager.LoadScene("VictoryScene");
+        SceneManager.LoadScene("VictoryScreen");
     }
     private void updateUI()
     {

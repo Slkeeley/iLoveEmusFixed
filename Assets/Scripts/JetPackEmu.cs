@@ -123,6 +123,7 @@ public class JetPackEmu : MonoBehaviour
     void Die()
     {
         Player.emusKilled++;
+        SpawnMax.currEnemies--;
         Destroy(this.gameObject);
     }
 

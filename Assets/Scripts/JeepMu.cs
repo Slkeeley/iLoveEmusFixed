@@ -138,6 +138,7 @@ public class JeepMu : MonoBehaviour
             GameObject.Instantiate(spawnEmus, transform.position, Quaternion.identity);
         }
         //car crash sound
+        SpawnMax.currEnemies--;
         Destroy(this.gameObject);
     }
 

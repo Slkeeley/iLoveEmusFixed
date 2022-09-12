@@ -148,6 +148,7 @@ public class BaseEmu : MonoBehaviour
         transform.eulerAngles = newRotation;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         yield return new WaitForSeconds(3.0f);
+        SpawnMax.currEnemies--;
         Player.emusKilled++; 
         Destroy(this.gameObject);
     }

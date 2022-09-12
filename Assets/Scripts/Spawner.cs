@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canSpawn)
+        if (canSpawn&&SpawnMax.currEnemies<150)
         {
             canSpawn = false; 
             spawnEmu();
@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
     void spawnEmu()
     {
         GameObject.Instantiate(emu, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+        SpawnMax.currEnemies++;
         StartCoroutine(spawnCooldown());
     }
 
