@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
 
     void spawnEmu()
     {
-        GameObject.Instantiate(emu);
+        GameObject.Instantiate(emu, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
         StartCoroutine(spawnCooldown());
     }
 

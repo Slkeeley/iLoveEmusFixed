@@ -10,7 +10,7 @@ public class EndScreen : MonoBehaviour
 
     private void Update()
     {
-        kills.text = "Thanks to the Australian Man's Efforts " + Player.emusKilled.ToString() + " Emus have been killed";
+        kills.text = "Thanks to an Australian Man's Efforts " + Player.emusKilled.ToString() + " Emus have been killed";
     }
 
 }
