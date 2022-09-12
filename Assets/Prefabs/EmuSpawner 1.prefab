@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d574bf2f2ed63294ba4965b866b61396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emu: {fileID: 1754532469511607603, guid: e8753b33684e5c54aa03a1407b7a4a31, type: 3}
+  emu: {fileID: 7262457639361146065, guid: e8753b33684e5c54aa03a1407b7a4a31, type: 3}
   spawnDelay: 5
   canSpawn: 1
