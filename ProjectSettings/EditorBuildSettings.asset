@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/VictoryScreen.unity
-    guid: e31d45288caa08742bfeb9c96677ab8d
-  - enabled: 1
-    path: Assets/Scenes/DeathScene.unity
-    guid: 9eb2ccfee648abf42926984693941b8d
-  - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -20,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChrisScene.unity
     guid: 2e4c6880114be934ca277cd2a0242006
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen.unity
+    guid: e31d45288caa08742bfeb9c96677ab8d
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 9eb2ccfee648abf42926984693941b8d
   m_configObjects: {}
